@@ -1,0 +1,60 @@
+= form_for(@member) do |f|
+  - if @member.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(@member.errors.count, "error")
+        prohibited this member from being saved:
+      %ul
+        - @member.errors.full_messages.each do |message|
+          %li= message
+  .row
+    .small-4.columns
+      .field
+        = f.label :voornaam
+        = f.text_field :first_name
+    .small-4.columns
+      .field
+        = f.label :tussenvoegsel
+        = f.text_field :insert
+    .small-4.columns
+      .field
+        = f.label :achternaam
+        = f.text_field :last_name
+    .small-4.columns.end
+      .field
+        = f.label :geboorte_datum
+        = f.date_select :dob, :order => [:day, :month, :year]
+  .row
+    .small-6.columns
+      .field
+        = f.label :adres
+        = f.text_field :adress
+    .small-3.columns
+      .field
+        = f.label :huis_nr
+        = f.number_field :adressNr
+    .small-3.columns
+      .field
+        = f.label :postcode
+        = f.text_field :zipcode
+    .small-4.columns
+      .field
+        Plaats moet nog!
+        /
+          <haml:loud> f.label :telefoon_nr </haml:loud>
+          <haml:loud> f.number_field :phone </haml:loud>
+    .small-4.columns
+      .field
+        = f.label :telefoon_nr
+    .small-4.columns
+      .field
+        = f.label :jaar_van_lidwording
+        = f.number_field :membershipYear
+  .row
+    .small-6.columns
+    .small-4.columns
+      - if current_page?(controller: 'members', action: 'new')
+        = f.submit "maak lid aan", :class => "button radius"
+      - elsif current_page?(controller: 'members', action: 'edit')
+        = f.submit "pas lid aan", :class => "button radius"
+      = link_to 'terug', members_path, :class => "button radius"

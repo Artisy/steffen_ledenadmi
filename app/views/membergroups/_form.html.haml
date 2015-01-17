@@ -1,0 +1,18 @@
+= form_for (@membergroup) do |f|
+  .row
+    .small-4.columns
+      .field
+        = f.label :commissie
+        = collection_select(:group, :id, @groups, :id, :name , {}, {:multiple => false})
+    .small-4.columns.end
+      .field
+        = f.label :jaar
+        = select_year(Date.today, :start_year => Time.now.year, :end_year => Time.now.year - 95, :field_name => 'groupyear' )
+  .row
+    .small-4.columns
+      .field
+        = fields_for(@group_member) do |ab|
+          = ab.label :leden
+          = collection_select(:member, :id, @members, :id, :first_name , {}, {:multiple => true, :class => "memberselect"})
+  .row
+    = f.submit "koppelen", :class => "button radius"

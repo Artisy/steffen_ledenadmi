@@ -1,0 +1,27 @@
+<%=form_for @group do |f|%>
+	<div class="row">
+		<div class="small-4 columns">
+			<div class="field">
+			<%= f.label :commissie %>
+			<%= collection_select(:member, :id, @groups, :id, :name , {}, {:multiple => false}) %>	
+			</div>
+		</div>
+		<div class="small-4 columns end">
+			<div class="field">
+			<%= f.label :jaar %>
+			<%= select_year(Date.today, :start_year => Time.now.year, :end_year => Time.now.year - 95, :field_name => 'groupyear' )%>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="small-4 columns">
+			<div class="field">
+			<%= f.label :leden %>
+			<%= collection_select(:member, :id, @members, :id, :first_name , {}, {:multiple => true, :class => "memberselect"}) %>
+			</div>
+		</div>	
+	</div>
+	<div class="row">
+		<%= f.submit "koppelen", :class => "button radius"%>
+	</div>
+<%end%>

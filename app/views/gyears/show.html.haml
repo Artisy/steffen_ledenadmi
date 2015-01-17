@@ -1,0 +1,14 @@
+.row
+  .small-12.columns
+    %p
+      groep #{@group_id}
+      %br/
+      jaar #{@year}
+      %br/
+      %strong deelnemers:
+      %br/
+      - @member_groups.each do |aa|
+        - if aa.group_id == @group_id && aa.groupyear == @year
+          - @members.each do |bb|
+            - if bb.id == aa.member_id
+              = link_to bb.first_name, member_path(bb.id)

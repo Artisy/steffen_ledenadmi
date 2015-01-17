@@ -1,0 +1,19 @@
+= form_for(@group) do |f|
+  - if @group.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(@group.errors.count, "error")
+        prohibited this group from being saved:
+      %ul
+        - @group.errors.full_messages.each do |message|
+          %li= message
+  .row
+    .small-5.columns
+      .field
+        = f.label :naam
+        = f.text_field :name
+  .row
+    .small-6.columns
+    .small-4.columns
+      = f.submit "aanmaken", :class => "button radius"
+= link_to 'terug', groups_path, :class => "button radius"

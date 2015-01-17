@@ -1,0 +1,58 @@
+!!!
+%html{:lang => "en"}
+  %head
+    %meta{:charset => "utf-8"}/
+    %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}/
+    %title= content_for?(:title) ? yield(:title) : "foundation-rails"
+    = stylesheet_link_tag    "application"
+    = javascript_include_tag "vendor/modernizr"
+    = csrf_meta_tags
+    = favicon_link_tag ''
+    .contain-to-grid
+      %nav.top-bar{"data-topbar" => "", :role => "navigation"}
+        %section.top-bar-section
+          / Right Nav Section
+          %ul.right
+            /
+              dropdown, werkt niet
+              <haml:silent>			 if user_signed_in?
+              </haml:silent><haml:block>			       		<li class="has-dropdown">
+              <haml:loud> link_to current_user.email, &amp;quot;#&amp;quot;  </haml:loud>
+              <ul class="dropdown">
+              <li><a href="http://localhost:3000/users/edit"><haml:loud> link_to &amp;#39;Edit profile&amp;#39;, edit_user_registration_path </haml:loud></a></li>
+              <li><haml:loud> link_to &amp;quot;Logout&amp;quot;, destroy_user_session_path, method: :delete </haml:loud></li>
+              </ul>
+              </li>
+              </haml:block><haml:silent>			         else
+              </haml:silent><haml:block>			          <li class="active"><haml:loud> link_to &amp;quot;Log in&amp;quot;, new_user_session_path </haml:loud></li>
+              <li class="active"><haml:loud> link_to &amp;quot;Sign up&amp;quot;, new_user_registration_path </haml:loud></li>
+              </haml:block>
+            - if user_signed_in?
+              %li.active= link_to "Profiel wijzigen", edit_user_registration_path
+              %li.active= link_to "Uitloggen", destroy_user_session_path, method: :delete
+            - else
+              %li.active= link_to "Inloggen", new_user_session_path
+              %li.active= link_to "Account aanmaken", new_user_registration_path
+          / Left Nav Section
+          %ul.left
+            <li
+            - if controller.controller_name=='staticpages'
+              class="active"
+            >#{link_to 'Home', staticpages_home_path}
+            - if user_signed_in?
+              <li
+              - if controller.controller_name=='members'
+                class="active"
+              > #{link_to 'Leden', members_path}
+              <li
+              - if controller.controller_name=='groups'
+                class="active"
+              > #{link_to 'Commissies', groups_path}
+              <li
+              - if controller.controller_name=='membergroups'
+                class="active"
+              > #{link_to 'koppelen', membergroups_path}
+  %body
+    %br/
+    = yield
+    = javascript_include_tag "application"

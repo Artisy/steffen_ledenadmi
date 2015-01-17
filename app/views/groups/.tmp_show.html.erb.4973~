@@ -1,0 +1,44 @@
+<!--code om alle jaren uit de jointable in een array te zetten, dubbele te verwijderen en sorteren-->
+<%@years = Array.new%>		
+<%@member_groups.each do |aa|%> 
+	<%if aa.groupyear.nil? == false && aa.group_id == @group.id%>
+		<%@years.push(aa.groupyear)%>
+	<%end%>
+<%end%>
+<%@years.sort%>		
+
+<div class="row">
+	<div class="small-4 columns">
+		<p class="title">
+		  	<%= @group.name %>
+		</p>
+		<br/>
+	</div>
+</div>
+<div class="row">
+	<div class="small-4 columns">
+		<table>
+			<thead>
+			  	<tr>
+			  		<th width="190">Jaar</th>
+			  	</tr>
+			</thead>
+			
+			<tbody>
+				<% @years.uniq.each do |cc|%>
+				    <tr>
+				    	<td>
+				        	<%= link_to cc, group_gyear_path(@group, cc)%><br/> 
+				        </td>        
+				    </tr>
+			    <%end%>
+			</tbody>
+		</table>
+	</div>
+<div>
+<div class="row">
+	<div class="small-6 columns"></div>
+	<div class="small-6 columns">	
+		<%= link_to 'terug', groups_path, :class =>"button radius"  %>
+	</div>
+</div>

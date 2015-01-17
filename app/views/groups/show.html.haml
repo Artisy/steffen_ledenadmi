@@ -1,0 +1,28 @@
+/ code om alle jaren uit de jointable in een array te zetten, dubbele te verwijderen en sorteren
+- @years = Array.new
+- @member_groups.each do |aa|
+  - if aa.groupyear.nil? == false && aa.group_id == @group.id
+    - @years.push(aa.groupyear)
+- @years.sort
+.row
+  .small-4.columns
+    %p.title
+      = @group.name
+    %br/
+.row
+  .small-4.columns
+    %table
+      %thead
+        %tr
+          %th{:width => "190"} Jaar
+      %tbody
+        - @years.uniq.each do |cc|
+          %tr
+            %td
+              = link_to cc, group_gyear_path(@group, cc)
+              %br/
+  %div
+    .row
+      .small-6.columns
+      .small-6.columns
+        = link_to 'terug', groups_path, :class =>"button radius"

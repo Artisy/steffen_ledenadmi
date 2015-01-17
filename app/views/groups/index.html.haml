@@ -1,0 +1,18 @@
+.row
+  .small-4.columns
+    %table
+      %thead
+        %tr
+          %th{:width => "190"} Comissies
+      %tbody
+        - @groups.each do |group|
+          %tr
+            %td
+              = link_to group.name, group
+              = link_to image_tag("delete.png", alt: "verwijderen", size: "20"), group, method: :delete, data: { confirm: 'Are you sure?' }, :class => "icon-align"
+              = link_to image_tag("edit.png", alt: "aanpassen", size: "20"), edit_group_path(group), :class => "icon-align"
+%br
+  .row
+    .small-2.columns
+    .small-3.columns
+      = link_to 'nieuwe commissie', new_group_path, :class => "button radius"

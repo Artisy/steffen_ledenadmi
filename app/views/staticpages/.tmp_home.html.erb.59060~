@@ -1,0 +1,39 @@
+<div class="row" id="tophome">
+<h4> Welkom op de homepage</h4>
+
+	<div class="large-6 columns">
+		<h5> Over de applicatie</h5>
+		<p> Deze applicatie is gericht op studentenverenigingen en sportverenigingen welke te maken hebben met
+		het beheren van leden en commissies. Deze leden en commissies kunnen aan elkaar gekoppeld worden en zo krijg je
+		inzicht in welke commissies er actief zijn en hoeveel leden en wie bij welke commissies betrokken zijn.
+			
+			
+		</p>
+	</div>
+	
+	<div class="large-6 columns">
+		<h5> Functionaliteiten</h5>
+		<ul>
+			<li> Leden Toevoegen </li>
+			<li> Leden Bewerken </li>
+			<li> Leden verwijderen</li>
+			<li> Commissies toevoegen</li>
+			<li> Comissies bewerken</li>
+			<li> Commissies verwijderen</li>
+			<li> Leden aan commissies toevoegen</li>
+		</ul>
+				
+	</div>
+	
+</div>
+
+<div class="row" id="showreel">
+	<div class="small-4 columns">
+		<div class="round">
+			<%= image_tag("ledenbeheer.jpg", alt: "afbeelding ledenbeheer", ) %>
+		</div>
+	</div>
+	
+	</div>
+	
+	

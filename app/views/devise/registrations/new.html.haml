@@ -1,0 +1,19 @@
+.row
+  = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+    = devise_error_messages!
+    .small-6.small-centered.columns
+      .field
+        = f.label :email_adres
+        = f.email_field :email, autofocus: true
+      .field
+        = f.label :wachtwoord
+        - if @validatable
+          %em
+            (minimaal #{@minimum_password_length} tekens)
+        = f.password_field :password, autocomplete: "off"
+      .field
+        = f.label :verifieer_wachtwoord
+        = f.password_field :password_confirmation, autocomplete: "off"
+      .actions
+        = f.submit "Account aanmaken", :class => "button radius"
+        = link_to 'terug', staticpages_home_path, :class => "button radius"

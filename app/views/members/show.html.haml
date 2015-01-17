@@ -1,0 +1,79 @@
+.row
+  .small-4.columns
+    %p
+      %strong naam:
+      %br/
+      %strong geboorte datum:
+      %br/
+      %strong telefoon nummer:
+      %br/
+      %strong Adres:
+      %br/
+      %strong postcode:
+      %br/
+      %strong plaats
+      %br/
+      %strong jaar van lidwording:
+      %br/
+  .small-4.columns.end
+    %p
+      = @member.first_name
+      - if @member.insert
+        = @member.insert
+      = @member.last_name
+      %br/
+      - if @member.dob
+        = @member.dob
+        %br/
+      - else
+        niet bekend
+        %br/
+      - if @member.phone
+        = @member.phone
+        %br/
+      - else
+        niet bekend
+        %br/
+      - if @member.adress
+        = @member.adress
+        - if @member.adressNr
+          = @member.adressNr
+          %br/
+        - else
+          %br/
+      - else
+        niet bekend
+        %br/
+      - if @member.zipcode
+        = @member.zipcode
+        %br/
+      - else
+        niet bekend
+        %br/
+      / hier moet nog code komen voor woonplaats
+      niet bekend
+      %br/
+      - if @member.membershipYear
+        = @member.membershipYear
+        %br/
+      - else
+        niet bekend
+        %br/
+  .small-12.columns
+    %strong Heeft deelgenomen aan de volgende commissies:
+    %br/
+    - @member_groups.each do |aa|
+      - if aa.member_id == @member.id
+        - @groups.each do |bb|
+          - if bb.id == aa.group_id
+            = link_to bb.name, group_path(bb.id)
+            = aa.groupyear
+%br/
+%br/
+%br/
+.row
+  .small-6.columns
+  .small-6.columns
+    = link_to 'aanpassen', edit_member_path(@member), :class => "button radius"
+    = link_to 'verwijderen', @member, method: :delete, data: { confirm: 'Are you sure?' },:class => "button radius"
+    = link_to 'terug', members_path, :class => "button radius"

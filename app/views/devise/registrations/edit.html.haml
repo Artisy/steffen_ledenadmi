@@ -1,0 +1,30 @@
+.row
+  = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
+    = devise_error_messages!
+    .small-6.columns
+      .field
+        = f.label :email_adres
+        = f.email_field :email, autofocus: true
+    .small-6.columns.end
+      .field
+        = f.label :huidig_wachtwoord
+        = f.password_field :current_password, autocomplete: "off"
+.row
+  - if devise_mapping.confirmable? && resource.pending_reconfirmation?
+    %div
+      Currently waiting confirmation for: #{resource.unconfirmed_email}
+  .small-6.columns
+    .field
+      = f.label :nieuw_wachtwoord
+      %i (Leeg laten als je je wachtwoord niet wilt aanpassen)
+      = f.password_field :password, autocomplete: "off"
+  .small-6.columns.end
+    .field
+      %br/
+      = f.label :wachtwoord_bevestigen
+      = f.password_field :password_confirmation, autocomplete: "off"
+.row
+  .large-9.small-2.columns
+  .large-3.small-10.columns
+    = f.submit "Aanpassen", :class => "button small radius"
+    = link_to "terug", :back, :class => "button small radius"
